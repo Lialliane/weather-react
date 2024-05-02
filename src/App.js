@@ -23,7 +23,7 @@ export default function App() {
   </div>
   <div className="current-temp-container col">
   <p id="current-temp"></p>
-  <img alt="current-weather-condition-image" id="current-weather-icon"  />
+  <img alt="current-weather-condition" id="current-weather-icon"  />
   </div>
   </span>
   <div className="row">
