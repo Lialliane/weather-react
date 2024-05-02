@@ -11,14 +11,15 @@ export default function Credit() {
         Lujain Khatib
       </a>{" "}
       and is
-      <a href="https://github.com/Lialliane/Weather_app" rel="noreferrer" target="_blank" >
+      <a href="https://github.com/Lialliane/weather-react" rel="noreferrer" target="_blank" >
         {" "}
         on GitHub
       </a>{" "}
       and
-      <a href="https://l-weather-app.netlify.app" rel="noreferrer" target="_blank">
+      <a href="https://l-weather-react.netlify.app" rel="noreferrer" target="_blank">
         hosted on Netlify
       </a>
     </p>
   );
 }
+
