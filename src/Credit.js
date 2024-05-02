@@ -5,18 +5,18 @@ export default function Credit() {
     <p className="credits">
       This project was coded by
       <a
-        href="https://www.shecodes.io/graduates/104683-lujain-kh"
-        target="_blank"
+        href="https://www.shecodes.io/graduates/104683-lujain-kh" rel="noreferrer"
+        target="_blank" 
       >
         Lujain Kh
       </a>{" "}
       and is
-      <a href="https://github.com/Lialliane/Weather_app" target="_blank">
+      <a href="https://github.com/Lialliane/Weather_app" rel="noreferrer" target="_blank" >
         {" "}
         on GitHub
       </a>{" "}
       and
-      <a href="https://l-weather-app.netlify.app" target="_blank">
+      <a href="https://l-weather-app.netlify.app" rel="noreferrer" target="_blank">
         hosted on Netlify
       </a>
     </p>
