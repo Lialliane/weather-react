@@ -1,4 +1,5 @@
 import { React } from "react";
+import "./FooterLogo.css";
 
 export default function FooterLogo() {
   return [
