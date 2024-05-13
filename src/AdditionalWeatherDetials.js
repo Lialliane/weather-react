@@ -127,6 +127,4 @@ else {
   
 }
 
-function AdditionalDetailsContainer({weatherInfo}){
-  return 
-}
+
