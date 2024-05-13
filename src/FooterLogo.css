@@ -1,0 +1,16 @@
+.footer-icon {
+    width: 263px;
+    margin: 0px 0px 9px 30px;
+  }
+
+@media (max-width: 530px) {
+  .footer-icon {
+    width: 180px;
+  }
+}
+
+@media (max-width: 400px) {
+    .footer-icon {
+        width: 100px;
+      }
+}

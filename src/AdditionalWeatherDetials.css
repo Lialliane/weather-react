@@ -1,0 +1,243 @@
+.additional-details-button {
+    text-align: left;
+    background: none;
+    border: none;
+    color: #e78895;
+    font-size: 23px;
+    padding: 0;
+    margin-left: 29px;
+    margin-bottom: 16px;
+    font-weight: bold;
+  }
+  #arrow {
+    transform: rotate(0deg);
+  }
+  #additional-details-container {
+    border: 1px #e78895 solid;
+    display: block;
+    border-radius: 37px;
+    padding: 6px 20px 18px;
+    color: #262626;
+    font-size: 26px;
+    position: absolute;
+    width: 58%;
+    opacity: 0;
+    animation-direction: normal;
+    pointer-events: none;
+  }
+  .emptyMovingContainer{
+    width: 100%;
+    height: 0px;
+    margin-top: 23px;
+  }
+
+  .animationContainer1 {
+    animation: open 300ms ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  .rotateArrowOpen {
+    animation: rotate 300ms ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  .animationContainer2 {
+    animation: move 300ms ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  .animationContainer1Reverse {
+    animation: close 300ms ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  .rotateArrowClose {
+    animation: rotateBack 300ms ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  .animationContainer2Reverse {
+    animation: moveBack 300ms ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes open {
+    from {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+  }
+  @keyframes close {
+    from {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes move {
+    from {
+        height: 0px;
+    }
+    to {
+        height: 324px;
+    }
+  }
+  
+  @keyframes moveBack {
+    from {
+        height: 324px;
+    }
+    to {
+        height: 0px;
+    }
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(180deg);
+    }
+  }
+  @keyframes rotateBack {
+    from {
+      transform: rotate(180deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
+  
+  .temp-space {
+    margin-right: 54px;
+  }
+  #max-temp,
+  #min-temp,
+  #feels-like,
+  #humidity,
+  #pressure,
+  #wind-speed {
+    color: #5c6665;
+    font-weight: 400;
+  }
+
+  .material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    top: 10px;
+    margin-right: 12px;
+  }
+
+  @media (max-width: 1200px) {
+    .additional-details-button {
+        font-size: 21px;
+      }
+    
+      #additional-details-container {
+        font-size: 23px;
+      }
+      .material-symbols-outlined {
+        font-size: 33px;
+      }
+      @keyframes move {
+        from {
+          height: 0px;
+        }
+        to {
+            height: 284px;
+        }
+      }
+    
+      @keyframes moveBack {
+        from {
+            height: 284px;
+        }
+        to {
+            height: 0px;
+        }
+      }
+    
+  }
+  
+  @media (max-width: 1025px){
+    .additional-details-button {
+        font-size: 20px;
+      }
+    
+      #additional-details-container {
+        font-size: 18px;
+        width: 56%;
+      }
+      .material-symbols-outlined {
+        font-size: 30px;
+      }
+      .emptyMovingContainer{
+        margin-top: 0px;
+      }
+      
+  }
+
+  @media (max-width: 865px) {
+    .additional-weather-details {
+        text-align: center;
+      }
+      .additional-details-button {
+        margin-left: 0px;
+      }
+      #additional-details-container {
+        font-size: 15px;
+        text-align: left;
+      }
+      .material-symbols-outlined {
+        font-size: 24px;
+      }
+  }
+
+  @media (max-width: 750px) {
+    #additional-details-container {
+        width: 405px;
+      }
+  }
+
+  @media (max-width: 530px) {
+    #additional-details-container {
+        font-size: 14px;
+        width: 72%;
+      }
+      .material-symbols-outlined {
+        font-size: 20px;
+      }
+  }
+  @media (max-width: 400px){
+    .additional-details-button {
+        font-size: 16px;
+      }
+      #additional-details-container {
+        font-size: 12px;
+        width: 78%;
+      }
+  }
+  @media (max-width: 325px) {
+    #additional-details-container {
+      width: 82%;
+      position: absolute;
+      left: 25px;
+    }
+}

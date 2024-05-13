@@ -1,0 +1,31 @@
+.credits {
+    text-align: center;
+    color: #5c6665;
+    margin-bottom: 50px;
+    font-size: 22px;
+  }
+  a:link {
+    text-decoration: none;
+    color: #e78895;
+  }
+  a:visited {
+    text-decoration: none;
+    color: rgba(231, 136, 149, 0.54);
+  }
+
+@media (max-width: 750px) {
+    .credits {
+      font-size: 20px;
+    }
+}
+@media (max-width: 530px) {
+    .credits {
+        font-size: 18px;
+      }
+}
+
+@media (max-width: 400px) {
+    .credits {
+        font-size: 15px;
+      }
+}
