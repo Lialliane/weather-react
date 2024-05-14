@@ -9,11 +9,13 @@ import WeatherIcon from "./WeatherIcon";
 
 
 
+
 export default function App() {
   let [error, setError] = useState(null);
   let [weatherInfo , setWeatherInfo]= useState(null);
   let [firstApiCall, setFirstApiCall]= useState(true);
   let [city, setCity] = useState('');
+  let [unitSelected, setUnitSelected] = useState('c');
 
 
 
@@ -43,7 +45,7 @@ export default function App() {
 
     if(typeof response == "object") {
       // have not used set city here becuase city value does not reflect in this call and waits 
-      // until a new rerender to be applied, and this url is updated with with NULL instead of actual value,
+      // until a new rerender to be applied, and thus url is updated with NULL instead of new city value,
       weatherApi=`https://api.openweathermap.org/data/2.5/weather?q=${response.data.city}&appid=${key}&units=metric`;
       console.log(city);
     }
@@ -77,7 +79,29 @@ export default function App() {
   }
   }
 
+  function UnitButtons(){
+  
+    function updateUnit(){
+      if(unitSelected==='c'){
+        setUnitSelected('f');
+        
+      }
+      else
+      setUnitSelected('c');
+    }
+  
+    if(unitSelected==='c'){
+    return <span className="unit-buttons"><button className="temperature-unit-selector selected" >°C</button> | <button className="temperature-unit-selector deselected" onClick={updateUnit}>°F</button></span> 
+    }
+    else
+    return <span className="unit-buttons"><button className="temperature-unit-selector deselected" onClick={updateUnit}>°C</button> | <button className="temperature-unit-selector selected">°F</button></span> 
+  }
 
+  function convertCelsiusToFahrenhiet(temperature){
+
+    return Math.round((temperature * 9/5) + 32);
+
+  }
 
 
   return (
@@ -105,7 +129,7 @@ export default function App() {
         <div className="city-details col">
           {(weatherInfo!=null)?<span>
             <h1 id="city-name">{weatherInfo.name}</h1> 
-            <p id="weather-condition">{weatherInfo.weather[0].description}</p> 
+            <p id="weather-condition">{weatherInfo.weather[0].description}</p>
             <FormatDate dateData = {weatherInfo.dt} />
           </span>
           : <span>
@@ -117,7 +141,15 @@ export default function App() {
           
         </div>
         <div className="current-temp-container col">
-          <p id="current-temp">{weatherInfo!=null?Math.round(weatherInfo.main.temp): null}</p>
+          <span className='d-flex flex-column'>
+            <p id="current-temp">
+              {weatherInfo!=null?
+              (unitSelected==='f'? convertCelsiusToFahrenhiet(weatherInfo.main.temp)
+              :Math.round(weatherInfo.main.temp))
+              : null}
+              </p>
+            <UnitButtons />
+          </span>
           {weatherInfo==null? <WeatherIcon weatherConditionIcon = {null} alt = "Current Weather Condition" /> :<WeatherIcon weatherConditionIcon = {weatherInfo.weather[0].icon} alt = {weatherInfo.weather[0].description} /> }
         </div>
       </span>
@@ -131,3 +163,4 @@ export default function App() {
   </div>
   );
 }
+
