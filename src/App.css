@@ -214,6 +214,9 @@ button.temperature-unit-selector {
   #current-time {
     font-size: 19px;
   }
+  .unit-buttons {
+    font-size: 18px;
+  }
   
 
   .week-day-temp,
@@ -253,6 +256,9 @@ button.temperature-unit-selector {
     justify-content: center;
     position: static;
   }
+  .unit-buttons {
+    font-size: 14px;
+  }
   
 }
 @media (max-width: 750px) {
@@ -285,6 +291,9 @@ button.temperature-unit-selector {
     width: 28%;
     font-size: 14px;
     margin-left: 24px;
+  }
+  .additional-details-button {
+    font-size: 14px;
   }
   
 }
