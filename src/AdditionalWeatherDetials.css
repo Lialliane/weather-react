@@ -217,6 +217,9 @@
   }
 
   @media (max-width: 530px) {
+    .additional-details-button {
+      font-size: 15px;
+    }
     #additional-details-container {
         font-size: 14px;
         width: 72%;
@@ -224,10 +227,11 @@
       .material-symbols-outlined {
         font-size: 20px;
       }
+
   }
   @media (max-width: 400px){
     .additional-details-button {
-        font-size: 16px;
+        font-size: 13px;
       }
       #additional-details-container {
         font-size: 12px;

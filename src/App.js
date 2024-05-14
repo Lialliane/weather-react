@@ -91,10 +91,10 @@ export default function App() {
     }
   
     if(unitSelected==='c'){
-    return <span className="unit-buttons"><button className="temperature-unit-selector selected" >°C</button> | <button className="temperature-unit-selector deselected" onClick={updateUnit}>°F</button></span> 
+    return <span className="unit-buttons d-flex justify-content-end"><button className="temperature-unit-selector selected" >°C</button> | <button className="temperature-unit-selector deselected" onClick={updateUnit}>°F</button></span> 
     }
     else
-    return <span className="unit-buttons"><button className="temperature-unit-selector deselected" onClick={updateUnit}>°C</button> | <button className="temperature-unit-selector selected">°F</button></span> 
+    return <span className="unit-buttons d-flex justify-content-end"><button className="temperature-unit-selector deselected" onClick={updateUnit}>°C</button> | <button className="temperature-unit-selector selected">°F</button></span> 
   }
 
   function convertCelsiusToFahrenhiet(temperature){
