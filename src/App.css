@@ -102,13 +102,32 @@ body {
   color: #5c6665;
   font-size: 68px;
   position: relative;
-  bottom: 32px;
+  font-family: "Merriweather Sans";
+  text-align: center;
+}
+.unit-buttons{
+  font-size: 22px;
+}
+
+.unit-buttons .selected{
+  color: #e78895;
+}
+.unit-buttons .selected:hover{
+  cursor: default;
+}
+.unit-buttons .deselected:hover{
+  color: gray;
+}
+
+button.temperature-unit-selector {
+  background: none;
+  border: none;
+  
   font-family: "Merriweather Sans";
 }
+
 #current-weather-icon {
   width: 195px;
-  bottom: 17px;
-  position: relative;
 }
 
 
@@ -233,9 +252,6 @@ body {
   .current-temp-container {
     justify-content: center;
     position: static;
-  }
-  #current-weather-icon {
-    width: 150px;
   }
   
 }
