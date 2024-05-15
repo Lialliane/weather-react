@@ -98,7 +98,7 @@ else {
           arrow_drop_down
         </span>
       </button>
-      <div id="additional-details-container" class="animationContainer1">
+      <div id="additional-details-container" className="animationContainer1">
         {additionalDetailsContainer}
       </div>
     </div>

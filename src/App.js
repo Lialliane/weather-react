@@ -70,22 +70,34 @@ export default function App() {
       console.log("full week");
       console.log(response.data.list);
       sortWeekDays(response.data.list);
-    } )
+    } ).catch(handleErrorForWeekForecast);
   }
   function sortWeekDays(weekDaysForecast){
     //this function picks list of temperature of weekdays at 12 ocklock and dicards the rest 
     let timeReg = /\s\d\d/ ;
     let updatedWeekDayList = [];
+    let minTemperatureList = [];
+    let updatedForecast={};
     weekDaysForecast.forEach((day) => {
       
       if(day.dt_txt.match(timeReg)[0]===' 12'){
         updatedWeekDayList.push(day);
       }
+      else if(day.dt_txt.match(timeReg)[0]===' 21'){
+        minTemperatureList.push(day.main.temp);
+      }
+      
     }
    )
+   
+
+   updatedForecast= {
+    weekDayList: updatedWeekDayList,
+    minTemperature: minTemperatureList
+   };
    console.log("new week list:");
-   console.log(updatedWeekDayList);
-   setweekWeatherInfo(updatedWeekDayList);
+   console.log(updatedForecast);
+   setweekWeatherInfo(updatedForecast);
   }
 
   function handleError(errorData){
@@ -103,11 +115,15 @@ export default function App() {
       setError("Only letters and (- . ' _ ) symbols allowed!");
     }
     else if(Object.hasOwn(errorData, "response") && errorData.response.data.cod==="404"){
-        setError("City not found, please enter a valid city name!");
+      setError("City not found, please enter a valid city name!");
     }
     else{
     setError('Sorry, something went wrong. Please try again later.');
   }
+  }
+  function handleErrorForWeekForecast(errorData){
+    setweekWeatherInfo(null);
+    console.log(errorData);
   }
 
   function UnitButtons(){
@@ -187,7 +203,9 @@ export default function App() {
       <div className="row">
         <AdditionalWeatherDetails weatherInfo = {weatherInfo} />
       </div>
-      <WeekWeatherForecast weatherForecast={weekWeatherInfo} unitSelected={unitSelected} />
+      {/* This may seem like a useless condition but it prevents the app from breaking if null is sended to component as value is yet to be updated */}
+      {weekWeatherInfo?
+      <WeekWeatherForecast weatherForecast={weekWeatherInfo.weekDayList} minTemperature={weekWeatherInfo.minTemperature} unitSelected={unitSelected} /> : null}
     </div>
     <Credit />
     <FooterLogo />
