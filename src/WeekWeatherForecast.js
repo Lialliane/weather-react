@@ -2,14 +2,12 @@ import { React } from "react";
 import WeatherIcon from "./WeatherIcon";
 import FormatDate from "./FormatDate";
 
-export default function WeekWeatherForecast({weatherForecast, unitSelected}){
+export default function WeekWeatherForecast({weatherForecast, unitSelected, minTemperature}){
     console.log("inside week weather function:");
     console.log(weatherForecast);
     let numberOfWeeksToRender = 5;
 
     function formatTemp(temp){
-        console.log("this is iside temp function");
-        console.log(temp);
         let newTemp= temp;
         if(unitSelected==='f'){
             newTemp = (temp * 9/5) + 32;
@@ -33,7 +31,7 @@ export default function WeekWeatherForecast({weatherForecast, unitSelected}){
                     </b>
                     <p className="week-day-temp d-flex flex-column">
                         <span>{formatTemp(weekDay.main.temp_max)}°{unitSelected.toUpperCase()}</span>
-                        <span>{formatTemp(weekDay.main.temp_min)}°{unitSelected.toUpperCase()}</span>
+                        <span>{formatTemp(minTemperature[index])}°{unitSelected.toUpperCase()}</span>
                     </p>
 
                 </div>
