@@ -1,11 +1,12 @@
 import "./App.css";
 import FooterLogo from "./FooterLogo";
 import Credit from "./Credit";
-import AdditionalWeatherDetials from "./AdditionalWeatherDetials";
+import AdditionalWeatherDetails from "./AdditionalWeatherDetails";
 import axios from "axios";
-import {useState } from "react";
+import {useState, useEffect } from "react";
 import FormatDate from './FormatDate';
 import WeatherIcon from "./WeatherIcon";
+import WeekWeatherForecast from "./WeekWeatherForecast";
 
 
 
@@ -13,10 +14,15 @@ import WeatherIcon from "./WeatherIcon";
 export default function App() {
   let [error, setError] = useState(null);
   let [weatherInfo , setWeatherInfo]= useState(null);
+  let [weekWeatherInfo , setweekWeatherInfo] = useState(null);
   let [firstApiCall, setFirstApiCall]= useState(true);
   let [city, setCity] = useState('');
   let [unitSelected, setUnitSelected] = useState('c');
+  let key='6e4a909c74d0fa723ce663bd96696094';
 
+  useEffect(()=>{
+    setFirstApiCall(false);
+  },[weatherInfo,error])
 
 
   
@@ -39,9 +45,9 @@ export default function App() {
 
   function getCityWeather(response = ''){
 
-    setFirstApiCall(false);
+    
     let weatherApi='';
-    let key='6e4a909c74d0fa723ce663bd96696094';
+    
 
     if(typeof response == "object") {
       // have not used set city here becuase city value does not reflect in this call and waits 
@@ -54,11 +60,36 @@ export default function App() {
     axios.get(weatherApi).then(function(response){
       console.log(response);
       setWeatherInfo(response.data);
+      getFullWeekWeather(response.data.coord.lat,response.data.coord.lon);
     }).catch(handleError);
   }
 
+  function getFullWeekWeather(latitude,longitude){
+    let fullWeekWeatherApi=`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`;
+    axios.get(fullWeekWeatherApi).then( function(response){
+      console.log("full week");
+      console.log(response.data.list);
+      sortWeekDays(response.data.list);
+    } )
+  }
+  function sortWeekDays(weekDaysForecast){
+    //this function picks list of temperature of weekdays at 12 ocklock and dicards the rest 
+    let timeReg = /\s\d\d/ ;
+    let updatedWeekDayList = [];
+    weekDaysForecast.forEach((day) => {
+      
+      if(day.dt_txt.match(timeReg)[0]===' 12'){
+        updatedWeekDayList.push(day);
+      }
+    }
+   )
+   console.log("new week list:");
+   console.log(updatedWeekDayList);
+   setweekWeatherInfo(updatedWeekDayList);
+  }
+
   function handleError(errorData){
-    setFirstApiCall(false);
+    
     console.log("Error: ");
     console.log(errorData);
     
@@ -130,7 +161,7 @@ export default function App() {
           {(weatherInfo!=null)?<span>
             <h1 id="city-name">{weatherInfo.name}</h1> 
             <p id="weather-condition">{weatherInfo.weather[0].description}</p>
-            <FormatDate dateData = {weatherInfo.dt} />
+            <FormatDate dateData = {weatherInfo.dt} fullDate={true}/>
           </span>
           : <span>
           <h1 id="city-name">Loading...</h1> 
@@ -150,13 +181,13 @@ export default function App() {
               </p>
             <UnitButtons />
           </span>
-          {weatherInfo==null? <WeatherIcon weatherConditionIcon = {null} alt = "Current Weather Condition" /> :<WeatherIcon weatherConditionIcon = {weatherInfo.weather[0].icon} alt = {weatherInfo.weather[0].description} /> }
+          {weatherInfo==null? <WeatherIcon weatherConditionIcon = {null} alt = "Current Weather Condition" currentWeather={true} /> :<WeatherIcon weatherConditionIcon = {weatherInfo.weather[0].icon} alt = {weatherInfo.weather[0].description} currentWeather={true} /> }
         </div>
       </span>
       <div className="row">
-        <AdditionalWeatherDetials weatherInfo = {weatherInfo!=null?weatherInfo:null} />
+        <AdditionalWeatherDetails weatherInfo = {weatherInfo} />
       </div>
-      <div id="week-weather-forecast" className="row"></div>
+      <WeekWeatherForecast weatherForecast={weekWeatherInfo} unitSelected={unitSelected} />
     </div>
     <Credit />
     <FooterLogo />

@@ -1,7 +1,7 @@
 import { useState, React } from "react";
-import "./AdditionalWeatherDetials.css";
+import "./AdditionalWeatherDetails.css";
 
-export default function AdditionalWeatherDetials({weatherInfo}) {
+export default function AdditionalWeatherDetails({weatherInfo}) {
   let weatherCondition;
   if(weatherInfo!=null){
     weatherCondition = {
@@ -83,7 +83,7 @@ else {
           {additionalDetailsContainer}
         </div>
       </div>
-        <div class = "emptyMovingContainer">
+        <div className = "emptyMovingContainer">
         </div>
       </span>
     );
@@ -102,7 +102,7 @@ else {
         {additionalDetailsContainer}
       </div>
     </div>
-      <div class = "emptyMovingContainer animationContainer2">
+      <div className = "emptyMovingContainer animationContainer2">
       </div>
     </span>
   );}
@@ -120,7 +120,7 @@ else {
         {additionalDetailsContainer}
       </div>
     </div>
-      <div class = "emptyMovingContainer animationContainer2Reverse">
+      <div className = "emptyMovingContainer animationContainer2Reverse">
       </div>
     </span>
   );

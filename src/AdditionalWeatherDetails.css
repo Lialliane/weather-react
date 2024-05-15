@@ -232,6 +232,7 @@
   @media (max-width: 400px){
     .additional-details-button {
         font-size: 13px;
+        margin-top: 10px;
       }
       #additional-details-container {
         font-size: 12px;
