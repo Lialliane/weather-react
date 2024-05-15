@@ -73,7 +73,8 @@ export default function App() {
     } ).catch(handleErrorForWeekForecast);
   }
   function sortWeekDays(weekDaysForecast){
-    //this function picks list of temperature of weekdays at 12 ocklock and dicards the rest 
+    //this function picks list of temperature of weekdays at 12 pm (serving as max temp)
+    //and at 9 pm (serving as min temp) and dicards the rest
     let timeReg = /\s\d\d/ ;
     let updatedWeekDayList = [];
     let minTemperatureList = [];
