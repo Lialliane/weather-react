@@ -18,18 +18,31 @@ export default function App() {
   let [firstApiCall, setFirstApiCall]= useState(true);
   let [city, setCity] = useState('');
   let [unitSelected, setUnitSelected] = useState('c');
+  let [canUseLocation, setCanUseLocation] = useState(null);
   let key='6e4a909c74d0fa723ce663bd96696094';
+  
+  useEffect(()=>{
+    const confirmation = window.confirm("Would you allow this program to use you location to lookup your current city weather? \n (P.S. You need to disable your AdBlock for it to work!)");
+    setCanUseLocation(confirmation);
+    },[]);
+  
 
   useEffect(()=>{
-    setFirstApiCall(false);
-  },[weatherInfo,error])
+    if(canUseLocation){
+      setFirstApiCall(false);
+    }
+    
+      
+  },[weatherInfo,error, canUseLocation]);
+  
 
 
   
   let ipAddressURL = 'https://json.geoiplookup.io/';
 
-  if(firstApiCall){
-    axios.get(ipAddressURL).then(getCityWeather).catch(handleError);
+
+  if(firstApiCall && canUseLocation){
+      axios.get(ipAddressURL).then(getCityWeather).catch(handleError);
   }
 
   function updateCity(event){
@@ -45,7 +58,7 @@ export default function App() {
 
   function getCityWeather(response = ''){
 
-    
+    console.log("ip adress"+ response);
     let weatherApi='';
     
 
@@ -106,20 +119,21 @@ export default function App() {
     console.log("Error: ");
     console.log(errorData);
     
+    
 
-    if(city===''){
+    if(city==='' && errorData.response){
       console.log("first if");
       setError("Please do not leave field empty!");
     }
     else if(/[^A-Za-z_.'\- ]/.test(city)){
       console.log("second if");
-      setError("Only letters and (- . ' _ ) symbols allowed!");
+      setError("Only letters and (- . ' _ ) symbols are allowed!");
     }
     else if(Object.hasOwn(errorData, "response") && errorData.response.data.cod==="404"){
       setError("City not found, please enter a valid city name!");
     }
     else{
-    setError('Sorry, something went wrong. Please try again later.');
+      setError('Sorry, something went wrong. Please try again later.');
   }
   }
   function handleErrorForWeekForecast(errorData){
