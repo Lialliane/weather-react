@@ -195,7 +195,7 @@ export default function App() {
             <FormatDate dateData = {weatherInfo.dt} fullDate={true}/>
           </span>
           : <span>
-          <h1 id="city-name">Loading...</h1> 
+          <h1 id="city-name">{canUseLocation===false?(""):"Loading"}</h1> 
           <p id="weather-condition">-</p> 
           <p id="current-time">00:00 AM,</p>
           <p id="current-date">-</p>
