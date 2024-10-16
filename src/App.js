@@ -22,7 +22,7 @@ export default function App() {
   let key='6e4a909c74d0fa723ce663bd96696094';
   
   useEffect(()=>{
-    const confirmation = window.confirm("Would you allow this program to use you location to lookup your current city weather? \n (P.S. You need to disable your AdBlock for it to work!)");
+    const confirmation = window.confirm("Would you allow this program to use your location to look up your current city's weather? \n (P.S. You need to disable your AdBlock for it to work!)");
     setCanUseLocation(confirmation);
     },[]);
   
